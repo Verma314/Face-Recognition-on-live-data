@@ -1,23 +1,24 @@
 # Face-Recognition-on-live-data
 
 
-Abstract— Implementing a system to detect faces in videos and to identify the person using a trained deep neural network.
-Keywords—face recognition; tensorflow; deep learning; transfer learning; parallel programming
+**Abstract— Implementing a system to detect faces in videos and to identify the person using a trained deep neural network.
+Keywords—face recognition; tensorflow; deep learning; transfer learning; parallel programming**
 
-I.  Introduction 
+## I.  Introduction 
 
 With the emergence of tools such as TensorFlow and CUDA it has become easier to solve progressively difficult problems in areas such as machine learning, deep learning, computer vision and so on.  A lot of open problems have been solved in recent years in image processing. Hence we turn to video processing, which is still an unsaturated field.
 We use open source tools openCV and TensorFlow to re-train the Inception v3 model to classify human faces in a live video stream.
 
-II.  Objective
+##  II.  Objective
 
 Our aim is to re-train an neural networks model, with our own faces.  We want to detect faces in live streamed videos and recognize the person. 
      We re-train the final layer of Inception v3 with cropped images of human faces. We then use the model to classify faces detected in a video stream.
 
-III. Methodology
+##  III. Methodology
 
 A. Dataset Creation
-       To create the dataset, 200 images of each person to be trained is collected using the same live streaming code that is used in face detection [1].  The image is converted to gray-scale so that the background color does not affect the image and the features of the person. It also ensures that the size of all the cropped images of the face is the same.
+
+To create the dataset, 200 images of each person to be trained is collected using the same live streaming code that is used in face detection [1].  The image is converted to gray-scale so that the background color does not affect the image and the features of the person. It also ensures that the size of all the cropped images of the face is the same.
 
 Face detection from the video is done in python using the another pre-trained model “haarcascade_frontalface_default”, which detects the frontal face [1].
 
@@ -34,7 +35,7 @@ It writes out a modified version of the Inception v3 network as output_graph.pb 
 C. Recognition
 We then write a script to take live feed of images from the web camera and use the retrained model on those images. 
 
-IV. Conclusion
+## IV. Conclusion
 
 The training accuracy tells us the number of images from the training batch that were labeled as the correct class. Validation accuracy is the precision on a randomly image from a set the mode has not seen before. Cross entropy tells us how well the learning process is progressing. [3]
 
@@ -43,7 +44,7 @@ These parameters are run on each of the 4000 training steps.  We can see the acc
 After the training, a final test for accuracy is done, which gives us an an accuracy between 90%- 95%.
 We then used the re-trained Inception v3 model to classify images fed directly through the web camera.
 
-V. Applications
+## V. Applications
 
 a) Security: Face recognition from streamed data can be used to detect and restrict entry of unauthorized people into the premises. Moreover, the neural nets can be trained to detect the whether two wheeler drivers have helmets or not.
 It can also be used to grant access to certain people and can be used in personal computers to grant access.
@@ -53,17 +54,20 @@ b) Biometric attendance:  We can train the neural network to identify people fro
 c) Statistics:  The software can be altered  to count the number of people present in a certain area.
 
 
-VI. Future Scope
+## VI. Future Scope
 
 The identification of a person can be done in parallel for faster and real-time processing.
 
 In our implementation, we have used CUDA and parallel programming only for the training phase, it can be extended to the testing phase as well.
 
 
-References
+## References
 
 
 [1] OpenCV documentation, cascade-classifier http://docs.opencv.org/2.4/doc/tutorials/objdetect/cascade_classifier/cascade_classifier.html#cascade-classifier
+
 [2] TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems by Martin Abadi, Ashish Agarwal et al.
+
 [3] TensorFlow Documentation, Image Retraining https://www.tensorflow.org/tutorials/image_retraining
+
 [4] Made using Creately: https://creately.com/
