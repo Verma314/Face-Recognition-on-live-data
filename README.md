@@ -11,7 +11,7 @@ We use open source tools openCV and TensorFlow to re-train the Inception v3 mode
 
 II.  Objective
 
-      Our aim is to re-train an neural networks model, with our own faces.  We want to detect faces in live streamed videos and recognize the person. 
+Our aim is to re-train an neural networks model, with our own faces.  We want to detect faces in live streamed videos and recognize the person. 
      We re-train the final layer of Inception v3 with cropped images of human faces. We then use the model to classify faces detected in a video stream.
 
 III. Methodology
@@ -19,23 +19,24 @@ III. Methodology
 A. Dataset Creation
        To create the dataset, 200 images of each person to be trained is collected using the same live streaming code that is used in face detection [1].  The image is converted to gray-scale so that the background color does not affect the image and the features of the person. It also ensures that the size of all the cropped images of the face is the same.
 
-       Face detection from the video is done in python using the another pre-trained model “haarcascade_frontalface_default”, which detects the frontal face [1].
+Face detection from the video is done in python using the another pre-trained model “haarcascade_frontalface_default”, which detects the frontal face [1].
 
 
 
 B. Training 
-  Training a completely new neural network for face recognition may be cumbersome and take a lot of time and processing to fully train.  We use  a concept Transfer Learning to achieve the objective.  It is a technique in which we take a fully trained model and retrain from the existing weights for new classes [3].
 
-      We take the Inception v3 model, which has been trained on ImageNet dataset.  We run a script called retrain.py from the open source project TensorFlow.  Once we have the dataset created in the previous section, the script starts to train the top layer of the network.  The script will run 4000 training steps, giving a series of outputs, each showing training accuracy, validation accuracy and cross entropy. Each step chooses ten images at random from the training set, finds their bottlenecks from the cache, and feeds them into the final layer to get predictions. Those predictions are then compared against the actual labels to update the final layer's weights through the back-propagation process. [2]
+Training a completely new neural network for face recognition may be cumbersome and take a lot of time and processing to fully train.  We use  a concept Transfer Learning to achieve the objective.  It is a technique in which we take a fully trained model and retrain from the existing weights for new classes [3].
 
-    It writes out a modified version of the Inception v3 network as output_graph.pb and the set of the custom labels as a text file.
+We take the Inception v3 model, which has been trained on ImageNet dataset.  We run a script called retrain.py from the open source project TensorFlow.  Once we have the dataset created in the previous section, the script starts to train the top layer of the network.  The script will run 4000 training steps, giving a series of outputs, each showing training accuracy, validation accuracy and cross entropy. Each step chooses ten images at random from the training set, finds their bottlenecks from the cache, and feeds them into the final layer to get predictions. Those predictions are then compared against the actual labels to update the final layer's weights through the back-propagation process. [2]
+
+It writes out a modified version of the Inception v3 network as output_graph.pb and the set of the custom labels as a text file.
 
 C. Recognition
 We then write a script to take live feed of images from the web camera and use the retrained model on those images. 
 
 IV. Conclusion
 
-       The training accuracy tells us the number of images from the training batch that were labeled as the correct class. Validation accuracy is the precision on a randomly image from a set the mode has not seen before. Cross entropy tells us how well the learning process is progressing. [3]
+The training accuracy tells us the number of images from the training batch that were labeled as the correct class. Validation accuracy is the precision on a randomly image from a set the mode has not seen before. Cross entropy tells us how well the learning process is progressing. [3]
 
 These parameters are run on each of the 4000 training steps.  We can see the accuracy improve in each step and go up to greater than 99.0%.
 
@@ -54,9 +55,9 @@ c) Statistics:  The software can be altered  to count the number of people prese
 
 VI. Future Scope
 
-       The identification of a person can be done in parallel for faster and real-time processing.
+The identification of a person can be done in parallel for faster and real-time processing.
 
-       In our implementation, we have used CUDA and parallel programming only for the training phase, it can be extended to the testing phase as well.
+In our implementation, we have used CUDA and parallel programming only for the training phase, it can be extended to the testing phase as well.
 
 
 References
